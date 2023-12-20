@@ -1,0 +1,36 @@
+.root {
+    -fx-font-family: "Segoe UI";
+    -fx-background-color: #F0F0F0;
+}
+
+#screen {
+    -fx-padding: 10;
+    -fx-min-width: 600px;
+    -fx-min-height: 400px;
+}
+
+#title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #007BFF;
+}
+
+#form {
+    -fx-spacing: 10;
+    -fx-alignment: center;
+}
+
+#username {
+    -fx-max-width: 200px;
+    -fx-min-width: 100px;
+}
+
+#password {
+    -fx-max-width: 200px;
+    -fx-min-width: 100px;
+}
+
+#login {
+    -fx-underline: true;
+    -fx-text-fill: blue;
+}

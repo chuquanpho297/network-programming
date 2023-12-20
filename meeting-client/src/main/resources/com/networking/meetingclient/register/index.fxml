@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<StackPane fx:id="screen" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.networking.meetingclient.controller.RegisterController">
+    <VBox fx:id="form" alignment="CENTER">
+        <Label fx:id="title" alignment="CENTER" contentDisplay="CENTER" prefWidth="200.0"
+               text="Meeting Calendar"/>
+        <TextField fx:id="username" prefHeight="26.0" prefWidth="200.0"
+                   promptText="Username"/>
+        <TextField fx:id="fullname" prefHeight="26.0" prefWidth="200.0"
+                   promptText="Fullname"/>
+        <PasswordField fx:id="password" prefHeight="26.0" prefWidth="200.0"
+                       promptText="Password"/>
+        <ComboBox fx:id="role" prefWidth="200.0" promptText="Select Role"/>
+
+        <Button fx:id="registerButton" prefHeight="26.0" prefWidth="200.0" text="Register"/>
+        <Label fx:id="login" alignment="CENTER" contentDisplay="CENTER" prefWidth="200.0"
+               text="Login account"/>
+    </VBox>
+</StackPane>

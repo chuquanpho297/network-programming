@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.networking.meetingclient.controller.MainController"
+      fx:id="screen">
+    <children>
+        <HBox prefHeight="74.0" prefWidth="1200.0" fx:id="header">
+            <children>
+                <Label alignment="CENTER" prefHeight="74.0" prefWidth="168.0" text="Home" fx:id="homelabel"/>
+                <Label alignment="CENTER_RIGHT" prefHeight="74.0" prefWidth="1057.0" text="Hello, Lai Hung"
+                       fx:id="fullname"/>
+            </children>
+        </HBox>
+        <HBox prefHeight="726.0" prefWidth="1200.0">
+            <VBox prefHeight="726.0" prefWidth="168.0" fx:id="sidebar">
+                <children>
+                    <Label alignment="CENTER" prefHeight="90" prefWidth="168.0" text="Time list"
+                           fx:id="meetinglabel" styleClass="seg-label"/>
+                    <Label alignment="CENTER" prefHeight="90" prefWidth="168.0" text="Scheduled meetings"
+                           fx:id="roomlabel" styleClass="seg-label"/>
+                    <Label alignment="CENTER" prefHeight="90" prefWidth="168.0" text="Profile" fx:id="userlabel"
+                           styleClass="seg-label"/>
+                    <Label alignment="CENTER" prefHeight="90" prefWidth="168.0" text="Logout" fx:id="logoutlabel"
+                           styleClass="seg-label"/>
+                </children>
+            </VBox>
+            <VBox fx:id="body" prefHeight="726.0" prefWidth="1032.0">
+                <Label fx:id="body_title" alignment="CENTER_LEFT" prefHeight="90.0" prefWidth="1032.0"
+                       text="Teachers' available time slots"/>
+                <ListView fx:id="timeSlotList" prefHeight="636.0" prefWidth="1032.0">
+                </ListView>
+            </VBox>
+        </HBox>
+    </children>
+</VBox>

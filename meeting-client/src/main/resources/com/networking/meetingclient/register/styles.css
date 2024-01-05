@@ -25,6 +25,11 @@
     -fx-min-width: 100px;
 }
 
+#fullname {
+    -fx-max-width: 200px;
+    -fx-min-width: 100px;
+}
+
 #password {
     -fx-max-width: 200px;
     -fx-min-width: 100px;

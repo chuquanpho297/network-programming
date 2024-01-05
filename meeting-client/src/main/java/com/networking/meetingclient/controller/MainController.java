@@ -1,85 +1,93 @@
 package com.networking.meetingclient.controller;
 
-import javafx.collections.ObservableList;
+import com.networking.meetingclient.HelloApplication;
+import javafx.event.Event;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.layout.HBox;
-import javafx.util.Callback;
+import javafx.scene.control.ProgressIndicator;
+import javafx.scene.layout.VBox;
 
 import java.net.URL;
-import java.time.LocalTime;
 import java.util.ResourceBundle;
+import java.util.function.Function;
 
-public class MainController implements Initializable {
+public class MainController extends Controller implements Initializable {
+    @FXML
+    private VBox body;
 
-    public ListView<TimeSlot> timeSlotList;
+    @FXML
+    private Label fullname;
 
-    public void initialize() {
+    @FXML
+    private Label homelabel;
 
-    }
+    @FXML
+    private Label meetinglabel;
 
-    public void addExampleTimeSlot() {
-        // Create an example time slot
-        TimeSlot exampleTimeSlot = new TimeSlot("Monday", LocalTime.of(9, 0), LocalTime.of(10, 0), "Teacher Name");
-        TimeSlot exampleTimeSlot2 = new TimeSlot("Monday", LocalTime.of(9, 0), LocalTime.of(10, 0), "Teacher Name");
-        TimeSlot exampleTimeSlot3 = new TimeSlot("Monday", LocalTime.of(9, 0), LocalTime.of(10, 0), "Teacher Name");
+    @FXML
+    private Label profilelabel;
 
-        // Get the current items in the ListView
-        ObservableList<TimeSlot> items = this.timeSlotList.getItems();
+    @FXML
+    private Label smeetinglabel;
 
-        // Add the example time slot to the items
-        items.add(exampleTimeSlot);
-        items.add(exampleTimeSlot2);
-        items.add(exampleTimeSlot3);
+    @FXML
+    private ProgressIndicator progressIndicator;
 
-        // Update the items in the ListView
-        timeSlotList.setItems(items);
+    @FXML
+    private Button logoutBtn;
+
+    private void setMainBody(String fxmlPath, Controller controller) {
+        try {
+            body.getChildren().clear();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(HelloApplication.class.getResource(fxmlPath));
+            loader.setController(controller);
+            Node node = loader.load();
+            body.getChildren().add(node);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        timeSlotList.setCellFactory(new TimeSlotCellFactory());
-        addExampleTimeSlot();
-    }
-}
+        this.setMainBody("main/time_slot.fxml", new TimeSlotController(progressIndicator));
 
-class TimeSlotCellFactory implements Callback<ListView<TimeSlot>, ListCell<TimeSlot>> {
-    @Override
-    public ListCell<TimeSlot> call(ListView<TimeSlot> param) {
-        return new ListCell<>() {
-            @Override
-            protected void updateItem(TimeSlot item, boolean empty) {
-                super.updateItem(item, empty);
-                if (item != null) {
-                    HBox hbox = new HBox(10); // Add spacing between components
-                    hbox.getStyleClass().add("time-slot"); // Add CSS class
-                    hbox.setStyle("-fx-border-color: black; -fx-border-width: 1;"); // Add border
-                    hbox.setAlignment(Pos.CENTER); // Center the components
-                    hbox.setStyle("-fx-background-color: white; -fx-padding: 10;"); // Add background color and padding
 
-                    Label dayLabel = new Label(item.day());
-                    dayLabel.setStyle("-fx-font-weight: bold;"); // Make the day label bold
+        setClickable(smeetinglabel, event -> {
+            this.setMainBody("main/s_meeting.fxml", new SchedulingMeetingController(progressIndicator));
+            return null;
+        });
 
-                    Label startTimeLabel = new Label(item.startTime().toString());
-                    Label endTimeLabel = new Label(item.endTime().toString());
-                    Label teacherNameLabel = new Label(item.teacherName());
+        setClickable(meetinglabel, event -> {
+            this.setMainBody("main/time_slot.fxml", new TimeSlotController(progressIndicator));
+            return null;
+        });
 
-                    hbox.getChildren().addAll(dayLabel, startTimeLabel, endTimeLabel, teacherNameLabel);
-                    setGraphic(hbox);
-                } else {
-                    setGraphic(null);
-                }
+        setClickable(profilelabel, event -> {
+//            this.setMainBody("main/profile.fxml");
+            return null;
+        });
+
+        setClickable(logoutBtn, event -> {
+            System.out.println("logoutBtn has been clicked");
+            try {
+                switchToScreen(event, "login");
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        };
+            return null;
+        });
+
     }
 
+    private void setClickable(Node node, Function<Event, Void> func) {
+        node.setOnMouseClicked(func::apply);
+    }
 
-}
-
-
-record TimeSlot(String day, LocalTime startTime, LocalTime endTime, String teacherName) {
 
 }

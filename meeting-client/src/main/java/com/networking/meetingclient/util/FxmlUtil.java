@@ -1,24 +1,25 @@
-package com.networking.meetingclient.config;
+package com.networking.meetingclient.util;
 
-public enum FxmlConfig {
+public enum FxmlUtil {
     LOGIN("login"),
     MAIN("main"),
     REGISTER("register");
 
+
     private final String dir;
 
 
-    FxmlConfig(String dir) {
+    FxmlUtil(String dir) {
         this.dir = dir;
     }
 
-    public static FxmlConfig fromString(String dir) {
-        for (FxmlConfig config : FxmlConfig.values()) {
+    public static FxmlUtil fromString(String dir) {
+        for (FxmlUtil config : FxmlUtil.values()) {
             if (config.dir.equalsIgnoreCase(dir)) {
                 return config;
             }
         }
-        throw new IllegalArgumentException("No enum constant " + FxmlConfig.class.getCanonicalName() + "." + dir);
+        throw new IllegalArgumentException("No enum constant " + FxmlUtil.class.getCanonicalName() + "." + dir);
     }
 
     public String getFxmlPath() {

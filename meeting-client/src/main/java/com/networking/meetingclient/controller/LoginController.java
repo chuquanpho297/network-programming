@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -25,6 +26,15 @@ public class LoginController extends Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        loginButton.addEventHandler(MOUSE_CLICKED, event -> {
+            System.out.println("username: " + username.getText());
+            System.out.println("password: " + password.getText());
+            try {
+                switchToScreen(event, "main");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
         register.addEventHandler(MOUSE_CLICKED, event -> {
             try {
                 switchToScreen(event, "register");

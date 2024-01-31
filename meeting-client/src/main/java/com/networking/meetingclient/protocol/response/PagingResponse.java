@@ -18,7 +18,6 @@ public class PagingResponse<T> extends OkResponse {
 @NoArgsConstructor
 @ToString
 class Metadata {
-    private Integer currentPage;
     private Boolean hasNextPage;
     private Boolean hasPreviousPage;
     private Integer totalPage;

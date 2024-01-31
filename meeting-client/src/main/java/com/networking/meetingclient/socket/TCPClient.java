@@ -33,6 +33,10 @@ public class TCPClient {
 
     private void createReaderFromServer() {
         try {
+            if (this.socket == null) {
+                LOGGER.warning("Socket is null.");
+                return;
+            }
             this.inFromServer = new BufferedReader(new InputStreamReader(
                     this.socket.getInputStream()));
         } catch (IOException e) {
@@ -42,6 +46,10 @@ public class TCPClient {
 
     private void createWriterToServer() {
         try {
+            if (this.socket == null) {
+                LOGGER.warning("Socket is null.");
+                return;
+            }
             this.outToServer = new DataOutputStream(this.socket.getOutputStream());
         } catch (IOException e) {
             LOGGER.warning("Failed to create writer to server: " + e.getMessage());
@@ -49,8 +57,12 @@ public class TCPClient {
     }
 
 
-    private void send(String message) {
+    public void send(String message) {
         try {
+            if (this.outToServer == null) {
+                LOGGER.warning("Socket is null.");
+                return;
+            }
             System.out.printf("TO SERVER %s:%s : %s\n", this.serverAddress, this.serverPort, message);
             this.outToServer.writeBytes(message + '\n');
         } catch (IOException e) {
@@ -58,8 +70,12 @@ public class TCPClient {
         }
     }
 
-    private String receive() {
+    public String receive() {
         try {
+            if (this.inFromServer == null) {
+                LOGGER.warning("Socket is null.");
+                return null;
+            }
             String receivedMess = this.inFromServer.readLine();
             System.out.printf("FROM SERVER %s:%s : %s\n", this.serverAddress, this.serverPort, receivedMess);
             return receivedMess;

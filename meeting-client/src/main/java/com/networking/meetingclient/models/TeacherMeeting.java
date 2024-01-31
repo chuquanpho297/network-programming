@@ -1,17 +1,22 @@
 package com.networking.meetingclient.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.ToString;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 
-@AllArgsConstructor
-@Data
-public class TeacherMeeting {
-    public String teacherName;
-    public String meetingType;
-    public int remainingParticipants;
-    public LocalTime startTime;
-    public LocalTime endTime;
-    // constructors, getters and setters
+
+@Getter
+@ToString(callSuper = true)
+public class TeacherMeeting extends Meeting {
+
+    @Builder
+    public TeacherMeeting(Integer id, String content, String meetingType, Integer remainingParticipants, Integer participantsNumber, LocalTime startTime, LocalTime endTime, LocalDate day, Integer week
+    ) {
+        super(id, content, meetingType, remainingParticipants, startTime, endTime, day, week, participantsNumber);
+    }
+
+
 }

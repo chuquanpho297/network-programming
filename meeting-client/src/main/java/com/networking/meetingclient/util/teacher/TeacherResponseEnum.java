@@ -1,0 +1,25 @@
+package com.networking.meetingclient.util.teacher;
+
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
+public enum TeacherResponseEnum {
+
+    EDIT_MEETING_OK("EDIT_MEETING_OK"),
+    EDIT_MEETING_FAIL("EDIT_MEETING_FAIL"),
+
+    DECLARE_TIME_SLOTS_FAIL("DECLARE_TIME_SLOTS_FAIL"),
+    DECLARE_TIME_SLOTS_OK("DECLARE_TIME_SLOTS_OK"),
+
+    VIEW_SCHEDULE_STUDENT_MEETINGS_FAIL("VIEW_SCHEDULE_STUDENT_MEETINGS_FAIL"),
+    VIEW_SCHEDULE_STUDENT_MEETINGS_OK("VIEW_SCHEDULE_STUDENT_MEETINGS_OK"),
+
+    VIEW_PAST_MEETINGS_OK("VIEW_PAST_MEETINGS_OK"),
+    VIEW_PAST_MEETINGS_FAIL("VIEW_PAST_MEETINGS_FAIL"),
+    ;
+
+    private final String response;
+}

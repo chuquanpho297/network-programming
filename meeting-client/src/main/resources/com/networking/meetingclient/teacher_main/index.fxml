@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<VBox fx:id="screen" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.networking.meetingclient.controller.teacher.TeacherMainController">
+    <HBox fx:id="header" prefHeight="74.0" prefWidth="1200.0">
+        <Label fx:id="homelabel" alignment="CENTER" prefHeight="74.0" prefWidth="168" text="Home"/>
+        <Label fx:id="title" alignment="CENTER" prefHeight="74.0" prefWidth="209.0" text="Label">
+            <font>
+                <Font size="20.0"/>
+            </font>
+        </Label>
+        <Label fx:id="fullname" alignment="CENTER_RIGHT" prefHeight="74.0" prefWidth="776.0"
+               text="Hello, Lai Hung"/>
+        <AnchorPane prefHeight="74.0" prefWidth="39.0"/>
+        <AnchorPane prefHeight="74.0" prefWidth="40.0">
+            <Button fx:id="logoutBtn" alignment="CENTER" contentDisplay="CENTER" layoutY="17.0"
+                    mnemonicParsing="false" prefHeight="40.0" prefWidth="72.0" text="Log out"/>
+        </AnchorPane>
+        <AnchorPane prefHeight="74.0" prefWidth="39.0"/>
+    </HBox>
+    <HBox prefHeight="726.0" prefWidth="1200.0">
+        <VBox fx:id="sidebar" prefHeight="726.0" prefWidth="168.0">
+            <Label fx:id="smeetinglabel" alignment="CENTER" prefHeight="90" prefWidth="168.0"
+                   styleClass="seg-label" text="Meetings"/>
+            <Label fx:id="dmeetinglabel" alignment="CENTER" prefHeight="90" prefWidth="168.0"
+                   styleClass="seg-label" text="Declare time slot"/>
+            <Label fx:id="historylabel" alignment="CENTER" prefHeight="90" prefWidth="168.0"
+                   styleClass="seg-label" text="History"/>
+            <Label fx:id="profilelabel1" alignment="CENTER" prefHeight="7.0" prefWidth="168.0" styleClass="seg-label" />
+        </VBox>
+        <StackPane prefHeight="726.0" prefWidth="1031.0">
+            <VBox fx:id="body" prefHeight="726.0" prefWidth="738.0"/>
+            <ProgressIndicator fx:id="progressIndicator"/>
+        </StackPane>
+    </HBox>
+</VBox>

@@ -21,6 +21,8 @@ public class ModelUtil {
             throw new IllegalArgumentException("No enum constant " + MeetingType.class.getCanonicalName() + "." + type);
         }
 
+
+
         public String getType() {
             return type;
         }

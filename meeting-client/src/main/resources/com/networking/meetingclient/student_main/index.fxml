@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="screen" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.networking.meetingclient.controller.student.StudentMainController">
+    <HBox fx:id="header" prefHeight="74.0" prefWidth="1200.0">
+        <Label fx:id="homelabel" alignment="CENTER" prefHeight="74.0" prefWidth="168" text="Home" />
+        <Label fx:id="title" alignment="CENTER" prefHeight="74.0" prefWidth="209.0" text="Label">
+        <font>
+            <Font size="20.0" />
+        </font>
+        </Label>
+        <Label fx:id="fullname" alignment="CENTER_RIGHT" prefHeight="74.0" prefWidth="776.0" text="Hello, Lai Hung" />
+        <AnchorPane prefHeight="74.0" prefWidth="39.0" />
+        <AnchorPane prefHeight="74.0" prefWidth="40.0">
+            <Button fx:id="logoutBtn" alignment="CENTER" contentDisplay="CENTER" layoutY="17.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="72.0" text="Log out" />
+        </AnchorPane>
+        <AnchorPane prefHeight="74.0" prefWidth="39.0" />
+    </HBox>
+    <HBox prefHeight="726.0" prefWidth="1200.0">
+        <VBox fx:id="sidebar" prefHeight="726.0" prefWidth="168.0">
+            <Label fx:id="meetinglabel" alignment="CENTER" prefHeight="90" prefWidth="168.0" styleClass="seg-label" text="Time slot list" />
+            <Label fx:id="smeetinglabel" alignment="CENTER" prefHeight="90" prefWidth="168.0" styleClass="seg-label" text="Scheduled meetings" />
+            <Label fx:id="profilelabel1" alignment="CENTER" prefHeight="7.0" prefWidth="168.0" styleClass="seg-label" />
+        </VBox>
+        <VBox prefHeight="726.0" prefWidth="1040.0">
+            <StackPane prefHeight="726.0" prefWidth="1031.0">
+                <VBox fx:id="body" prefHeight="726.0" prefWidth="738.0"/>
+                <ProgressIndicator fx:id="progressIndicator"/>
+            </StackPane>
+        </VBox>
+    </HBox>
+</VBox>

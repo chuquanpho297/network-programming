@@ -1,7 +1,8 @@
-package com.networking.meetingclient.controller;
+package com.networking.meetingclient.controller.teacher;
 
 import com.networking.meetingclient.HelloApplication;
-import javafx.event.Event;
+import com.networking.meetingclient.controller.Controller;
+import com.networking.meetingclient.service.UserService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -13,23 +14,16 @@ import javafx.scene.layout.VBox;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.function.Function;
 
-public class MainController extends Controller implements Initializable {
+public class TeacherMainController extends Controller implements Initializable {
+    @FXML
+    public Label title;
+    @FXML
+    public Label dmeetinglabel;
+    @FXML
+    public Label historylabel;
     @FXML
     private VBox body;
-
-    @FXML
-    private Label fullname;
-
-    @FXML
-    private Label homelabel;
-
-    @FXML
-    private Label meetinglabel;
-
-    @FXML
-    private Label profilelabel;
 
     @FXML
     private Label smeetinglabel;
@@ -39,8 +33,11 @@ public class MainController extends Controller implements Initializable {
 
     @FXML
     private Button logoutBtn;
+    private UserService userService = UserService.getInstance();
+
 
     private void setMainBody(String fxmlPath, Controller controller) {
+        progressIndicator.setVisible(false);
         try {
             body.getChildren().clear();
             FXMLLoader loader = new FXMLLoader();
@@ -55,27 +52,32 @@ public class MainController extends Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        this.setMainBody("main/time_slot.fxml", new TimeSlotController(progressIndicator));
-
+        this.setMainBody("teacher_main/s_meeting.fxml", new TeacherSchedulingMeetingController(progressIndicator));
+        setTitle("Meetings", title);
 
         setClickable(smeetinglabel, event -> {
-            this.setMainBody("main/s_meeting.fxml", new SchedulingMeetingController(progressIndicator));
+            this.setMainBody("teacher_main/s_meeting.fxml", new TeacherSchedulingMeetingController(progressIndicator));
+            setTitle("Meetings", title);
             return null;
         });
 
-        setClickable(meetinglabel, event -> {
-            this.setMainBody("main/time_slot.fxml", new TimeSlotController(progressIndicator));
+        setClickable(dmeetinglabel, event -> {
+            this.setMainBody("teacher_main/declare_time_slot.fxml", new DeclareTimeSlotController(progressIndicator));
+            setTitle("Declare Time Slots", title);
             return null;
         });
 
-        setClickable(profilelabel, event -> {
-//            this.setMainBody("main/profile.fxml");
+        setClickable(historylabel, event -> {
+            this.setMainBody("teacher_main/past_meeting.fxml", new TeacherPastMeetingController(progressIndicator));
+            setTitle("History", title);
             return null;
         });
+
 
         setClickable(logoutBtn, event -> {
             System.out.println("logoutBtn has been clicked");
             try {
+                userService.logout();
                 switchToScreen(event, "login");
             } catch (Exception e) {
                 e.printStackTrace();
@@ -84,10 +86,4 @@ public class MainController extends Controller implements Initializable {
         });
 
     }
-
-    private void setClickable(Node node, Function<Event, Void> func) {
-        node.setOnMouseClicked(func::apply);
-    }
-
-
 }

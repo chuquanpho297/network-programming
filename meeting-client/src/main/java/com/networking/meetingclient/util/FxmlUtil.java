@@ -2,7 +2,8 @@ package com.networking.meetingclient.util;
 
 public enum FxmlUtil {
     LOGIN("login"),
-    MAIN("main"),
+    STUDENT_MAIN("student_main"),
+    TEACHER_MAIN("teacher_main"),
     REGISTER("register");
 
 

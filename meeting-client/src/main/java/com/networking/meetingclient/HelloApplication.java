@@ -1,5 +1,6 @@
 package com.networking.meetingclient;
 
+import com.networking.meetingclient.socket.TCPClient;
 import com.networking.meetingclient.util.FxmlUtil;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -9,21 +10,22 @@ import javafx.stage.Stage;
 
 public class HelloApplication extends Application {
     public static void main(String[] args) {
-//        TCPClient client = new TCPClient(9000, "localhost");
+        TCPClient client = new TCPClient(9000, "localhost");
+        StateManager.getInstance().setClientSocket(client);
         try {
             launch();
         } finally {
-//            client.closeSocketConnection();
+            client.closeSocketConnection();
         }
     }
 
     @Override
     public void start(Stage stage) throws Exception {
         // Load the FXML file for the login screen
-        FXMLLoader loader = new FXMLLoader(this.getClass().getResource(FxmlUtil.MAIN.getFxmlPath()));
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource(FxmlUtil.LOGIN.getFxmlPath()));
         // Create the scene with the root node loaded from the FXML file
         Scene scene = new Scene(loader.load());
-        String css = this.getClass().getResource(FxmlUtil.MAIN.getCssPath()).toExternalForm();
+        String css = this.getClass().getResource(FxmlUtil.LOGIN.getCssPath()).toExternalForm();
         scene.getStylesheets().add(css);
         stage.setScene(scene);
 

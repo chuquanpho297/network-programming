@@ -1,0 +1,61 @@
+.root {
+    -fx-font-family: "Segoe UI";
+    -fx-background-color: #F0F0F0;
+}
+
+
+#sidebar {
+    -fx-background-color: white;
+    -fx-max-width: 168;
+}
+
+#header {
+    -fx-padding: 0 10 0 0;
+}
+
+#homelabel {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-background-color: #007BFF;
+    -fx-min-width: 168;
+    -fx-cursor: hand;
+}
+
+.seg-label {
+    -fx-font-weight: bold;
+    -fx-min-width: 168;
+    -fx-cursor: hand;
+    -fx-border-color: black transparent transparent transparent;
+    -fx-border-width: 1 0 0 0;
+}
+
+#body_title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+#time-slot:filled:hover {
+    -fx-background-color: #0093ff;
+    -fx-text-fill: white;
+}
+
+#time-slot:filled:selected:focused, #time-slot:filled:selected {
+    -fx-background-color: linear-gradient(#328BDB 0%, #207BCF 25%, #1973C9 75%, #0A65BF 100%);
+    -fx-text-fill: white;
+}
+
+#timeSlotList {
+    -fx-padding: 10;
+    -fx-spacing: 10;
+    -fx-alignment: center;
+}
+
+.seg-label:hover {
+    -fx-background-color: #aed1f8;
+}
+
+#fullname {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}

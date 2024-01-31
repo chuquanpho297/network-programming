@@ -1,0 +1,25 @@
+package com.networking.meetingclient.util.student;
+
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
+public enum StudentResponseEnum {
+
+    BOOK_MEETING_OK("BOOK_MEETING_OK"),
+    BOOK_MEETING_FAIL("BOOK_MEETING_FAIL"),
+
+    CANCEL_MEETING_OK("CANCEL_MEETING_OK"),
+    CANCEL_MEETING_FAIL("CANCEL_MEETING_FAIL"),
+
+    VIEW_WEEKLY_SCHEDULE_MEETINGS_FAIL("VIEW_WEEKLY_SCHEDULE_MEETINGS_FAIL"),
+    VIEW_WEEKLY_SCHEDULE_MEETINGS_OK("VIEW_WEEKLY_SCHEDULE_MEETINGS_OK"),
+
+    VIEW_AVAILABLE_TIME_SLOTS_FAIL("VIEW_AVAILABLE_TIME_SLOTS_FAIL"),
+    VIEW_AVAILABLE_TIME_SLOTS_OK("VIEW_AVAILABLE_TIME_SLOTS_OK"),
+    ;
+
+    private final String response;
+}

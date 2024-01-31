@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="studentSearch" prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.networking.meetingclient.controller.student.StudentSearchController">
+    <DatePicker fx:id="startDateField" layoutX="23.0" layoutY="24.0" prefHeight="26.0" prefWidth="158.0" />
+    <Label layoutX="23.0" layoutY="6.0" prefHeight="17.0" prefWidth="63.0" text="Start Date:" />
+    <Button fx:id="searchBtn" layoutX="959.0" layoutY="37.0" text="Search" />
+    <DatePicker fx:id="endDateField" layoutX="220.0" layoutY="24.0" prefWidth="158.0" />
+    <Label layoutX="220.0" layoutY="7.0" prefHeight="17.0" prefWidth="63.0" text="End Date:" />
+    <ComboBox fx:id="startTimeField" layoutX="23.0" layoutY="87.0" prefHeight="26.0" prefWidth="158.0" />
+    <Label layoutX="23.0" layoutY="68.0" prefHeight="17.0" prefWidth="63.0" text="StartTime:" />
+    <ComboBox fx:id="endTimeField" layoutX="220.0" layoutY="88.0" prefHeight="26.0" prefWidth="158.0" />
+    <Label layoutX="220.0" layoutY="70.0" prefHeight="17.0" prefWidth="63.0" text="End Time:" />
+    <Label layoutX="455.0" layoutY="7.0" prefHeight="17.0" prefWidth="88.0" text="Teacher Name:" />
+    <TextField fx:id="teacherNameField" layoutX="455.0" layoutY="25.0" prefHeight="26.0" prefWidth="200.0" />
+   <ComboBox fx:id="weekField" layoutX="455.0" layoutY="88.0" prefHeight="26.0" prefWidth="158.0" />
+   <Label layoutX="455.0" layoutY="68.0" prefHeight="17.0" prefWidth="63.0" text="Week:" />
+   <ComboBox fx:id="sizeField" layoutX="679.0" layoutY="24.0" prefHeight="26.0" prefWidth="83.0" />
+   <Label layoutX="679.0" layoutY="7.0" prefHeight="17.0" prefWidth="103.0" text="Size Page:" />
+</AnchorPane>

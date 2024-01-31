@@ -1,5 +1,6 @@
 package com.networking.meetingclient.controller;
 
+import com.networking.meetingclient.service.UserService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -24,13 +25,22 @@ public class LoginController extends Controller implements Initializable {
     @FXML
     private Button loginButton;
 
+    private final UserService userService = UserService.getInstance();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         loginButton.addEventHandler(MOUSE_CLICKED, event -> {
             System.out.println("username: " + username.getText());
             System.out.println("password: " + password.getText());
+
+            userService.login(username.getText(), password.getText());
+
             try {
-                switchToScreen(event, "main");
+
+                if (username.getText().equals("1"))
+                    switchToScreen(event, "student_main");
+                else if (username.getText().equals("2"))
+                    switchToScreen(event, "teacher_main");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

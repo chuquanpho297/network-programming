@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<AnchorPane prefHeight="726.0" prefWidth="1032.0" xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1">
+    <VBox layoutX="255.0" layoutY="146.0" prefHeight="334.0" prefWidth="523.0" spacing="10">
+        <Label text="Username:"/>
+        <TextField fx:id="usernameField" editable="false" text="Test"/>
+
+        <Label text="Full Name:"/>
+        <TextField fx:id="fullnameField"/>
+
+        <Label text="Password:"/>
+        <PasswordField fx:id="passwordField" prefHeight="26.0" prefWidth="434.0"/>
+
+        <Label text="Confirm Password:"/>
+        <PasswordField fx:id="confirmPasswordField"/>
+        <HBox alignment="CENTER">
+            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="90.0" text="Save"/>
+        </HBox>
+    </VBox>
+</AnchorPane>

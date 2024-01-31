@@ -7,12 +7,26 @@ module com.networking.meetingclient {
     requires com.fasterxml.jackson.annotation;
     requires com.fasterxml.jackson.core;
     requires com.fasterxml.jackson.databind;
-    opens com.networking.meetingclient.protocol to com.fasterxml.jackson.databind;
+    requires com.fasterxml.jackson.datatype.jsr310;
+    opens com.networking.meetingclient.protocol.response to com.fasterxml.jackson.databind;
     opens com.networking.meetingclient to javafx.fxml;
     exports com.networking.meetingclient;
     exports com.networking.meetingclient.controller;
     opens com.networking.meetingclient.controller to javafx.fxml;
     exports com.networking.meetingclient.models;
     opens com.networking.meetingclient.models to javafx.fxml;
-
+    exports com.networking.meetingclient.controller.student;
+    opens com.networking.meetingclient.controller.student to javafx.fxml;
+    exports com.networking.meetingclient.controller.teacher;
+    opens com.networking.meetingclient.controller.teacher to javafx.fxml;
+    exports com.networking.meetingclient.util;
+    opens com.networking.meetingclient.util to javafx.fxml;
+    exports com.networking.meetingclient.util.student;
+    opens com.networking.meetingclient.util.student to javafx.fxml;
+    exports com.networking.meetingclient.util.teacher;
+    opens com.networking.meetingclient.util.teacher to javafx.fxml;
+    exports com.networking.meetingclient.protocol.request to com.fasterxml.jackson.databind;
+    opens com.networking.meetingclient.protocol.request to com.fasterxml.jackson.databind;
+    exports com.networking.meetingclient.protocol.request.student to com.fasterxml.jackson.databind;
+    opens com.networking.meetingclient.protocol.request.student to com.fasterxml.jackson.databind;
 }

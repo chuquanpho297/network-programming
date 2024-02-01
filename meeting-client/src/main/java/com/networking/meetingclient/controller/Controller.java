@@ -1,6 +1,7 @@
 package com.networking.meetingclient.controller;
 
 import com.networking.meetingclient.HelloApplication;
+import com.networking.meetingclient.models.Meeting;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -18,11 +19,10 @@ public class Controller {
 
     protected ProgressIndicator progressIndicator;
 
-    public void switchToScreen(Event event, String fxmlDir) throws IOException {
+    public void switchToScreen(Stage stage, String fxmlDir) throws IOException {
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(HelloApplication.class.getResource(fxmlDir + "/index.fxml")));
             root.getStylesheets().add(HelloApplication.class.getResource(fxmlDir + "/styles.css").toExternalForm());
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
             e.printStackTrace();
@@ -36,5 +36,20 @@ public class Controller {
 
     public void setClickable(Node node, Function<Event, Void> func) {
         node.setOnMouseClicked(func::apply);
+    }
+
+    public void showMeetingDetail(Meeting meeting) {
+        try {
+            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("meeting_detail.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("Meeting Detail");
+            loader.setController(new MeetingDetailController(meeting));
+            // Set the scene and show the stage
+            Scene scene = new Scene(loader.load()); // Set appropriate size
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

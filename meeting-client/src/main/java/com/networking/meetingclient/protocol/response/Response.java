@@ -11,5 +11,4 @@ import lombok.ToString;
 @Setter
 public class Response {
     private String code;
-    private String message;
 }

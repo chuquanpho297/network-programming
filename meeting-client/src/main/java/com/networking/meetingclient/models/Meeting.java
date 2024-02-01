@@ -4,6 +4,7 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -17,7 +18,8 @@ public class Meeting {
     private Integer remainingParticipants;
     private LocalTime startTime;
     private LocalTime endTime;
-    private LocalDate day;
+    private LocalDate date;
     private Integer week;
     private Integer participantsNumber;
+    private List<Student> participants;
 }

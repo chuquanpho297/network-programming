@@ -7,7 +7,7 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString(callSuper = true)
-public class LoginResponse extends OkResponse {
+public class LoginResponse extends Response {
     private String session;
     private String role;
     private String fullname;

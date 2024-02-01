@@ -63,8 +63,10 @@ public class MeetingSeed<T extends Meeting> {
                     .startTime(startTime)
                     .endTime(endTime)
                     .teacherName(teacherName)
-                    .day(day)
+                    .date(day)
                     .week(WeekUtil.getWeek(day))
+                    .participantsNumber(new Random().nextInt(10))
+                    .participants(StudentSeed.getStudents())
                     .build());
         } else if (type.equals(TeacherMeeting.class)) {
             return type.cast(TeacherMeeting.builder()
@@ -76,6 +78,8 @@ public class MeetingSeed<T extends Meeting> {
                     .endTime(endTime)
                     .day(day)
                     .week(WeekUtil.getWeek(day))
+                    .participantsNumber(new Random().nextInt(10))
+                    .participants(StudentSeed.getStudents())
                     .build());
         } else {
             throw new RuntimeException("Unknown type");

@@ -1,6 +1,5 @@
 package com.networking.meetingclient.controller.teacher;
 
-import com.networking.meetingclient.util.MeetingOptionsEnum;
 import com.networking.meetingclient.util.TimeMeetingEnum;
 import com.networking.meetingclient.util.WeekUtil;
 import javafx.collections.FXCollections;
@@ -17,22 +16,17 @@ import lombok.Getter;
 
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.List;
 import java.util.ResourceBundle;
 
+@Getter
 public class TeacherSearchController implements Initializable {
 
     public ComboBox<Integer> sizeField;
     @FXML
-    private ComboBox<String> meetingOptionsField;
-    @FXML
     private Button searchBtn;
     @FXML
-    @Getter
     private DatePicker startDateField;
     @FXML
-    @Getter
     private DatePicker endDateField;
 
     @FXML
@@ -47,11 +41,6 @@ public class TeacherSearchController implements Initializable {
         sizeField.getItems().addAll(20, 30, 50);
         sizeField.setValue(20);
 
-        List<String> meetingOptionsList = Arrays.stream(MeetingOptionsEnum.values()).map(MeetingOptionsEnum::getMeetingOption).toList();
-        ObservableList<String> meetingOptionsObservableList = FXCollections.observableArrayList();
-        meetingOptionsObservableList.addAll(meetingOptionsList);
-        meetingOptionsField.setItems(meetingOptionsObservableList);
-        meetingOptionsField.setValue(MeetingOptionsEnum.ALL_MEETING.getMeetingOption());
         ObservableList<String> weekOptions = FXCollections.observableArrayList();
         weekOptions.addAll(WeekUtil.getWeeks());
         weekField.setItems(weekOptions);
@@ -98,7 +87,6 @@ public class TeacherSearchController implements Initializable {
         });
 
         endDateField.setOnMouseClicked(event ->
-
         {
             weekField.setValue(null);
         });

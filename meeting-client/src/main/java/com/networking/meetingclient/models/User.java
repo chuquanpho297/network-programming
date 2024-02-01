@@ -12,5 +12,5 @@ public class User {
     private String username;
     private String fullname;
     private String role;
-    private String userSession;
+    private String session;
 }

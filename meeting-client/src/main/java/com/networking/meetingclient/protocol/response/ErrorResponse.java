@@ -10,5 +10,5 @@ import lombok.ToString;
 @NoArgsConstructor
 @Setter
 public class ErrorResponse extends Response {
-
+    private String message;
 }

@@ -1,9 +1,8 @@
 package com.networking.meetingclient.controller.teacher;
 
 import com.networking.meetingclient.controller.Controller;
-import com.networking.meetingclient.models.TeacherMeeting;
+import com.networking.meetingclient.service.TeacherMeetingService;
 import com.networking.meetingclient.util.TimeMeetingEnum;
-import com.networking.meetingclient.util.WeekUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
@@ -11,6 +10,7 @@ import javafx.scene.control.*;
 import javafx.util.Callback;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class DeclareTimeSlotController extends Controller implements Initializable {
@@ -21,6 +21,8 @@ public class DeclareTimeSlotController extends Controller implements Initializab
     public ComboBox<String> startTimeField;
     public ComboBox<String> endTimeField;
     public Button saveButton;
+
+    private TeacherMeetingService teacherMeetingService = TeacherMeetingService.getInstance();
 
     DeclareTimeSlotController(ProgressIndicator progressIndicator) {
         this.progressIndicator = progressIndicator;
@@ -57,18 +59,32 @@ public class DeclareTimeSlotController extends Controller implements Initializab
             }
         });
 
-        saveButton.setOnAction(event -> {
-            // Update the meeting object with the new values
-            TeacherMeeting editMeeting = TeacherMeeting.builder()
-                    .content(contentField.getText())
-                    .meetingType(meetingTypeField.getValue())
-                    .remainingParticipants(Integer.parseInt(participantNumberField.getText()))
-                    .day(dateField.getValue())
-                    .week(WeekUtil.getWeek(dateField.getValue()))
-                    .startTime(TimeMeetingEnum.fromTimeMeetingToLocalTime(startTimeField.getValue()))
-                    .endTime(TimeMeetingEnum.fromTimeMeetingToLocalTime(endTimeField.getValue()))
-                    .build();
+        dateField.setDayCellFactory(new Callback<>() {
+            @Override
+            public DateCell call(final DatePicker datePicker) {
+                return new DateCell() {
+                    @Override
+                    public void updateItem(LocalDate item, boolean empty) {
+                        super.updateItem(item, empty);
 
+                        if (item.isBefore(LocalDate.now())) {
+                            setDisable(true);
+                            setStyle("-fx-background-color: #ffc0cb;");
+                        }
+                    }
+                };
+            }
+        });
+        saveButton.setOnAction(event -> {
+            teacherMeetingService.declareTimeSlot(
+                    contentField.getText(),
+                    meetingTypeField.getValue(),
+                    participantNumberField.getText(),
+                    startTimeField.getValue(),
+                    endTimeField.getValue(),
+                    dateField.getValue()
+            );
+            System.out.println("Declare Time Slot");
         });
     }
 }

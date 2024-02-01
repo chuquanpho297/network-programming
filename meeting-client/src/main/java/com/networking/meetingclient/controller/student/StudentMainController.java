@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -70,7 +71,7 @@ public class StudentMainController extends Controller implements Initializable {
             System.out.println("logoutBtn has been clicked");
             try {
                 userService.logout();
-                switchToScreen(event, "login");
+                switchToScreen((Stage) ((Node) event.getSource()).getScene().getWindow(), "login");
             } catch (Exception e) {
                 e.printStackTrace();
             }

@@ -1,20 +1,18 @@
 package com.networking.meetingclient.controller.teacher;
 
-import com.networking.meetingclient.HelloApplication;
 import com.networking.meetingclient.controller.Controller;
 import com.networking.meetingclient.controller.PaginationController;
 import com.networking.meetingclient.models.TeacherMeeting;
 import com.networking.meetingclient.seed.MeetingSeed;
+import com.networking.meetingclient.service.TeacherMeetingService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import java.net.URL;
@@ -29,6 +27,8 @@ public class TeacherPastMeetingController extends Controller implements Initiali
     private TableViewTeacherController tableViewTeacherController;
     @FXML
     private TeacherSearchController teacherSearchController;
+    private TeacherMeetingService teacherMeetingService = TeacherMeetingService.getInstance();
+
 
     public TeacherPastMeetingController(ProgressIndicator progressIndicator) {
         this.progressIndicator = progressIndicator;
@@ -77,7 +77,7 @@ public class TeacherPastMeetingController extends Controller implements Initiali
                 buttonGroup.getChildren().add(moreBtn);
                 moreBtn.setOnAction(event -> {
                     TeacherMeeting selectedMeeting = tableViewTeacherController.getTableViewTeacher().getItems().get(getIndex());
-                    showMeetingDetails(selectedMeeting);
+                    showMeetingDetail(selectedMeeting);
                 });
             }
 
@@ -92,7 +92,14 @@ public class TeacherPastMeetingController extends Controller implements Initiali
             }
         });
 
-        Task<ObservableList<TeacherMeeting>> loadDataTask = getObservableListTask();
+        Task<ObservableList<TeacherMeeting>> loadDataTask = getObservableListTask(
+                teacherSearchController.getStartDateField().getValue(),
+                teacherSearchController.getEndDateField().getValue(),
+                teacherSearchController.getStartTimeField().getValue(),
+                teacherSearchController.getEndTimeField().getValue(),
+                paginationController.getPagination().getCurrentPageIndex() + 1,
+                teacherSearchController.getSizeField().getValue()
+        );
 
         new Thread(loadDataTask).start();
 
@@ -101,15 +108,52 @@ public class TeacherPastMeetingController extends Controller implements Initiali
         paginationController.addPageChangeListener((observable, oldValue, newValue) -> {
             System.out.println(newValue);
             tableViewTeacherController.clearTableViewData();
-            Task<ObservableList<TeacherMeeting>> loadDataTask1 = getObservableListTask();
+            Task<ObservableList<TeacherMeeting>> loadDataTask1 = getObservableListTask(
+                    teacherSearchController.getStartDateField().getValue(),
+                    teacherSearchController.getEndDateField().getValue(),
+                    teacherSearchController.getStartTimeField().getValue(),
+                    teacherSearchController.getEndTimeField().getValue(),
+                    paginationController.getPagination().getCurrentPageIndex() + 1,
+                    teacherSearchController.getSizeField().getValue()
+            );
+            new Thread(loadDataTask1).start();
+        });
+
+        teacherSearchController.getSearchBtn().addEventHandler(MouseEvent.MOUSE_CLICKED, event ->
+        {
+            paginationController.getPagination().setCurrentPageIndex(0);
+            tableViewTeacherController.clearTableViewData();
+            Task<ObservableList<TeacherMeeting>> loadDataTask1 = getObservableListTask(
+                    teacherSearchController.getStartDateField().getValue(),
+                    teacherSearchController.getEndDateField().getValue(),
+                    teacherSearchController.getStartTimeField().getValue(),
+                    teacherSearchController.getEndTimeField().getValue(),
+                    paginationController.getPagination().getCurrentPageIndex() + 1,
+                    teacherSearchController.getSizeField().getValue()
+            );
             new Thread(loadDataTask1).start();
         });
     }
 
-    public Task<ObservableList<TeacherMeeting>> getObservableListTask() {
+    public Task<ObservableList<TeacherMeeting>> getObservableListTask(
+            LocalDate startDate,
+            LocalDate endDate,
+            String startTime,
+            String endTime,
+            int page,
+            int size
+    ) {
         Task<ObservableList<TeacherMeeting>> loadDataTask = new Task<>() {
             @Override
             protected ObservableList<TeacherMeeting> call() {
+                teacherMeetingService.getPastMeeting(
+                        startDate,
+                        endDate,
+                        startTime,
+                        endTime,
+                        page,
+                        size
+                );
                 return FXCollections.observableArrayList(new MeetingSeed<>(TeacherMeeting.class).createRandomDataList());
             }
         };
@@ -121,20 +165,5 @@ public class TeacherPastMeetingController extends Controller implements Initiali
         });
         loadDataTask.setOnFailed((e) -> progressIndicator.setVisible(false));
         return loadDataTask;
-    }
-
-    private void showMeetingDetails(TeacherMeeting meeting) {
-        // Create a new Stage or Scene
-        try {
-            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("teacher_main/edit_meeting.fxml"));
-            Stage stage = new Stage();
-            stage.setTitle("Edit Meeting");
-            // Set the scene and show the stage
-            Scene scene = new Scene(loader.load()); // Set appropriate size
-            stage.setScene(scene);
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 }

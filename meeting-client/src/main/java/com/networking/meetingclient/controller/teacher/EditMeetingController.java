@@ -1,8 +1,8 @@
 package com.networking.meetingclient.controller.teacher;
 
 import com.networking.meetingclient.models.TeacherMeeting;
+import com.networking.meetingclient.service.TeacherMeetingService;
 import com.networking.meetingclient.util.TimeMeetingEnum;
-import com.networking.meetingclient.util.WeekUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
@@ -12,6 +12,7 @@ import javafx.util.Callback;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
 
 public class EditMeetingController implements Initializable {
     private final Stage stage;
@@ -23,6 +24,8 @@ public class EditMeetingController implements Initializable {
     public DatePicker dateField;
     public ComboBox<String> startTimeField;
     public ComboBox<String> endTimeField;
+
+    private TeacherMeetingService teacherMeetingService = TeacherMeetingService.getInstance();
 
     public EditMeetingController(Stage stage, TeacherMeeting meeting) {
         this.stage = stage;
@@ -45,7 +48,7 @@ public class EditMeetingController implements Initializable {
         contentField.setText(meeting.getContent());
         participantNumberField.setText(String.valueOf(meeting.getRemainingParticipants()));
         meetingTypeField.setValue(meeting.getMeetingType());
-        dateField.setValue(meeting.getDay());
+        dateField.setValue(meeting.getDate());
         startTimeField.setValue(TimeMeetingEnum.fromLocalTimeToString(meeting.getStartTime()));
         endTimeField.setValue(TimeMeetingEnum.fromLocalTimeToString(meeting.getEndTime()));
         meetingTypeField.setCellFactory(new Callback<>() {
@@ -66,18 +69,16 @@ public class EditMeetingController implements Initializable {
         });
 
         saveButton.setOnAction(event -> {
-
-            TeacherMeeting editMeeting = TeacherMeeting.builder()
-                    .content(contentField.getText())
-                    .meetingType(meetingTypeField.getValue())
-                    .remainingParticipants(Integer.parseInt(participantNumberField.getText()))
-                    .day(dateField.getValue())
-                    .week(WeekUtil.getWeek(dateField.getValue()))
-                    .startTime(TimeMeetingEnum.fromTimeMeetingToLocalTime(startTimeField.getValue()))
-                    .endTime(TimeMeetingEnum.fromTimeMeetingToLocalTime(endTimeField.getValue()))
-                    .build();
-
-            System.out.println("editMeeting: " + editMeeting.toString());
+            teacherMeetingService.editMeeting(
+                    meeting.getId(),
+                    contentField.getText(),
+                    meetingTypeField.getValue(),
+                    participantNumberField.getText(),
+                    startTimeField.getValue(),
+                    endTimeField.getValue(),
+                    dateField.getValue()
+            );
+            System.out.println("Edit Meeting");
             // Close the form
             stage.close();
         });

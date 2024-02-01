@@ -1,6 +1,6 @@
 package com.networking.meetingclient.protocol.response.teacher;
 
-import com.networking.meetingclient.protocol.response.OkResponse;
+import com.networking.meetingclient.protocol.response.Response;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,5 +10,5 @@ import lombok.ToString;
 @Getter
 @Setter
 @NoArgsConstructor
-public class EditMeetingResponse extends OkResponse {
+public class EditMeetingResponse extends Response {
 }

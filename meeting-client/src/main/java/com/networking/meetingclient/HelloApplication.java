@@ -2,6 +2,7 @@ package com.networking.meetingclient;
 
 import com.networking.meetingclient.socket.TCPClient;
 import com.networking.meetingclient.util.FxmlUtil;
+import com.networking.meetingclient.util.JavaFxUtil;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -34,5 +35,9 @@ public class HelloApplication extends Application {
 
         // Show the stage
         stage.show();
+
+        if (StateManager.getInstance().getClientSocket().getSocket() == null) {
+            JavaFxUtil.createAlert("Error Dialog", "Connection Error", "Failed to connect to server");
+        }
     }
 }

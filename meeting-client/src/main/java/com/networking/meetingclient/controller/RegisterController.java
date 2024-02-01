@@ -4,7 +4,9 @@ import com.networking.meetingclient.service.UserService;
 import com.networking.meetingclient.util.Role;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -40,7 +42,7 @@ public class RegisterController extends Controller implements Initializable {
         });
         login.addEventHandler(MOUSE_CLICKED, event -> {
             try {
-                switchToScreen(event, "login");
+                switchToScreen((Stage) ((Node) event.getSource()).getScene().getWindow(), "login");
             } catch (Exception e) {
                 e.printStackTrace();
             }

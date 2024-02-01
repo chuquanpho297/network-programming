@@ -7,6 +7,6 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString(callSuper = true)
-public class LogoutResponse extends OkResponse {
+public class LogoutResponse extends Response {
 
 }

@@ -29,4 +29,6 @@ module com.networking.meetingclient {
     opens com.networking.meetingclient.protocol.request to com.fasterxml.jackson.databind;
     exports com.networking.meetingclient.protocol.request.student to com.fasterxml.jackson.databind;
     opens com.networking.meetingclient.protocol.request.student to com.fasterxml.jackson.databind;
+    exports com.networking.meetingclient.protocol.request.teacher to com.fasterxml.jackson.databind;
+    opens com.networking.meetingclient.protocol.request.teacher to com.fasterxml.jackson.databind;
 }

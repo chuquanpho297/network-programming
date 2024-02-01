@@ -9,7 +9,7 @@ import java.util.List;
 @NoArgsConstructor
 @Setter
 @ToString(callSuper = true)
-public class PagingResponse<T> extends OkResponse {
+public class PagingResponse<T> extends Response {
     private List<T> lists;
     private Metadata metadata;
 }

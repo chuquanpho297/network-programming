@@ -17,7 +17,7 @@ public class DeclareTimeSlotRequest extends Request {
     private Integer participantsNumber;
     private LocalTime startTime;
     private LocalTime endTime;
-    private LocalDate day;
+    private LocalDate date;
 
     @Builder
     public DeclareTimeSlotRequest(String content, String meetingType, Integer participantsNumber, LocalTime startTime, LocalTime endTime, LocalDate day) {
@@ -27,7 +27,7 @@ public class DeclareTimeSlotRequest extends Request {
         this.participantsNumber = participantsNumber;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.day = day;
+        this.date = day;
     }
 }
 

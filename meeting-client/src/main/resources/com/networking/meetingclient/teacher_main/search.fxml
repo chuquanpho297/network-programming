@@ -16,10 +16,8 @@
     <Label layoutX="23.0" layoutY="68.0" prefHeight="17.0" prefWidth="63.0" text="StartTime:" />
     <ComboBox fx:id="endTimeField" layoutX="220.0" layoutY="88.0" prefHeight="26.0" prefWidth="158.0" />
     <Label layoutX="220.0" layoutY="70.0" prefHeight="17.0" prefWidth="63.0" text="End Time:" />
-    <Label layoutX="455.0" layoutY="7.0" prefHeight="17.0" prefWidth="103.0" text="Meeting Options:" />
-    <ComboBox fx:id="meetingOptionsField" layoutX="455.0" layoutY="25.0" prefHeight="26.0" prefWidth="158.0" />
     <ComboBox fx:id="weekField" layoutX="455.0" layoutY="88.0" prefHeight="26.0" prefWidth="158.0" />
     <Label layoutX="455.0" layoutY="68.0" prefHeight="17.0" prefWidth="63.0" text="Week:" />
-   <ComboBox fx:id="sizeField" layoutX="669.0" layoutY="25.0" prefHeight="26.0" prefWidth="83.0" />
-   <Label layoutX="669.0" layoutY="7.0" prefHeight="17.0" prefWidth="103.0" text="Size Page:" />
+   <ComboBox fx:id="sizeField" layoutX="455.0" layoutY="24.0" prefHeight="26.0" prefWidth="158.0" />
+   <Label layoutX="456.0" layoutY="7.0" prefHeight="17.0" prefWidth="103.0" text="Size Page:" />
 </AnchorPane>

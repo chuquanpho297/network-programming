@@ -1,5 +1,7 @@
 package com.networking.meetingclient.socket;
 
+import com.networking.meetingclient.util.JavaFxUtil;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
@@ -11,6 +13,7 @@ import java.net.Socket;
 import java.util.logging.Logger;
 
 @Setter
+@Getter
 @RequiredArgsConstructor
 public class TCPClient {
     private final static Logger LOGGER =

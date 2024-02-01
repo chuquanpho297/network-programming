@@ -1,6 +1,6 @@
 package com.networking.meetingclient.protocol.response.teacher;
 
-import com.networking.meetingclient.protocol.response.OkResponse;
+import com.networking.meetingclient.protocol.response.Response;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,7 +10,7 @@ import lombok.ToString;
 @Getter
 @NoArgsConstructor
 @Setter
-public class DeclareTimeSlotResponse extends OkResponse {
+public class DeclareTimeSlotResponse extends Response {
 
 }
 

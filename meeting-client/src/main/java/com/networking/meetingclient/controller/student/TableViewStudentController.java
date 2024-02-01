@@ -44,7 +44,7 @@ public class TableViewStudentController implements Initializable {
         contentColumn.setCellValueFactory(new PropertyValueFactory<>("content"));
         meetingTypeColumn.setCellValueFactory(new PropertyValueFactory<>("meetingType"));
         remainingParticipantsColumn.setCellValueFactory(new PropertyValueFactory<>("remainingParticipants"));
-        dayColumn.setCellValueFactory(new PropertyValueFactory<>("day"));
+        dayColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
         weekColumn.setCellValueFactory(new PropertyValueFactory<>("week"));
         startTimeColumn.setCellValueFactory(new PropertyValueFactory<>("startTime"));
         endTimeColumn.setCellValueFactory(new PropertyValueFactory<>("endTime"));

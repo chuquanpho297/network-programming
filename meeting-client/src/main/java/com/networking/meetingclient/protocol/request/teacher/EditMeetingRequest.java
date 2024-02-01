@@ -12,16 +12,16 @@ import java.time.LocalTime;
 @Setter
 @NoArgsConstructor
 public class EditMeetingRequest extends Request {
-    private Long meetingId;
+    private Integer meetingId;
     private String content;
     private String meetingType;
     private Integer participantsNumber;
     private LocalTime startTime;
     private LocalTime endTime;
-    private LocalDate day;
+    private LocalDate date;
 
     @Builder
-    public EditMeetingRequest(Long meetingId, String content, String meetingType, Integer participantsNumber, LocalTime startTime, LocalTime endTime, LocalDate day) {
+    public EditMeetingRequest(Integer meetingId, String content, String meetingType, Integer participantsNumber, LocalTime startTime, LocalTime endTime, LocalDate day) {
         super(TeacherRequestEnum.EDIT_MEETING.getRequest());
         this.meetingId = meetingId;
         this.content = content;
@@ -29,6 +29,6 @@ public class EditMeetingRequest extends Request {
         this.participantsNumber = participantsNumber;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.day = day;
+        this.date = day;
     }
 }
